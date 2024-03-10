@@ -1922,6 +1922,16 @@ li.tg-rss a {
     background-size: cover;
 }
 
+.blueBG {
+    background: linear-gradient(to bottom, rgba(15, 12, 81, 0.8) 0%, rgba(15, 12, 81, 0.8) 1%, rgba(15, 12, 81, 0.8) 100%);
+
+}
+
+.blueBG h3, .blueBG h6{
+    color: white !important;
+}
+
+
 .tg-bgparallax:before {
     top: 0;
     left: 0;

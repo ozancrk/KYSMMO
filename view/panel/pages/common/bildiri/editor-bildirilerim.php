@@ -20,7 +20,7 @@
                 <div class="card">
                     <div class="card-body">
 
-                        <table id="example" class="table table-bordered dt-responsive nowrap table-striped align-middle"
+                        <table id="buttons-datatables" class="table table-bordered dt-responsive nowrap table-striped align-middle"
                                style="width:100%">
                             <thead>
                             <tr>

@@ -66,9 +66,11 @@ $(document).ready(function () {
                 var filedata = await uploadfiles(data.upload)
             }
 
-            console.log(filedata)
-            data.fileID = filedata.fileID;
-            sessionStorage.setItem(data.token, data.fileID);
+            if (filedata.fileUrl !== undefined) {
+                data.fileID = filedata.fileID;
+                sessionStorage.setItem(data.token, data.fileID);
+            }
+
         } else {
             data.fileID = sessionStorage.getItem(data.token);
         }
@@ -417,7 +419,6 @@ async function uploadfiles(fileInputID) {
 }
 
 
-
 async function uploadbildirifiles(fileInputID, bildiriID, fileType) {
 
     let fileList = $('#' + fileInputID).prop("files");
@@ -444,7 +445,7 @@ async function uploadbildirifiles(fileInputID, bildiriID, fileType) {
             data = msg;
         },
         fail: function (res) {
-           console.log(res)
+            console.log(res)
         }
     })
 
@@ -496,7 +497,6 @@ async function hakemata(data, token) {
 }
 
 
-
 async function sortSave(data, token) {
 
 
@@ -522,7 +522,43 @@ async function sortSave(data, token) {
         type: 'POST',
         success: function (msg) {
 
-          //  location.reload();
+            //  location.reload();
+
+
+        }, error: function (msg) {
+
+            hata_alert('Bir hata meydana geldi!');
+            $('.btn').prop('disabled', false);
+        }
+    });
+
+    $('.btn').prop('disabled', false);
+}
+
+async function sortSaveKurul(data, token) {
+
+
+    let form_data = "";
+
+
+    let url = "api/kurul/sort.php";
+    form_data = new FormData();
+
+    form_data.append('token', token);
+    form_data.append('data', sortlist(data.list));
+
+    await $.ajax({
+        url: url,
+        cache: false,
+        contentType: false,
+        processData: false,
+        async: true,
+        dataType: 'json',
+        data: form_data,
+        type: 'POST',
+        success: function (msg) {
+
+            //  location.reload();
 
 
         }, error: function (msg) {

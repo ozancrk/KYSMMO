@@ -168,7 +168,7 @@ todo: Hakem değerlendirme dosyasını ekle,  Hakem Sonuçlarını, atanmış ha
                                     </div><!-- end card -->
                                 </div>
                                 <div class="col-12">
-                                    <table id="example"
+                                    <table id="buttons-datatables"
                                            class="table table-bordered dt-responsive nowrap table-striped align-middle"
                                            style="width:100%">
                                         <thead>

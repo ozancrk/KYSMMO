@@ -91,7 +91,7 @@ if ($_GET['pageLang']) {
                                     array(
                                         'type' => 'hidden',
                                         'name' => 'id',
-                                        'value' => $_GET['pageID']
+                                        'value' => 1
                                     ),
                                     array(
                                         'type' => 'hidden',
@@ -111,6 +111,7 @@ if ($_GET['pageLang']) {
                     ?>
                 </div>
             </div>
+
             <div class="card">
                 <div class="card-body">
 
@@ -158,7 +159,57 @@ if ($_GET['pageLang']) {
 
 
             </div>
+            <div class="card">
+                <div class="card-body">
+                    <?php
+                    echo createForm(
+                        array(
+                            'id' => 'serialize',
+                            'buttonText' => 'Gönder',
+                            'elements' =>
+                                array(
+                                    array(
+                                        'type' => 'custom',
+                                        'value' => '<h5>Destekleyen Kurumlar</h5>'
+                                    ),
+                                    array(
+                                        'type' => 'checkbox',
+                                        'label' => 'Anasayfada Göster / Gizle',
+                                        'name' => 'status_destek_' . $pageLang,
+                                        'value' => $pageMeta['status_destek_' . $pageLang]
+                                    ),
+                                    [
+                                        'type' => 'select',
+                                        'option' => $db->from('kurullar')->all(),
+                                        'label' => 'Liste',
+                                        'optionValue' => 'id',
+                                        'optionText' => 'name_' . $pageLang,
+                                        'name' => 'kurul_destek'
+                                    ],
+                                    array(
+                                        'type' => 'hidden',
+                                        'name' => 'pageID',
+                                        'id' => 'pageID',
+                                        'value' => 1
+                                    ),
+                                    array(
+                                        'type' => 'hidden',
+                                        'name' => 'ckeditor',
+                                        'value' => 'cagri_' . $pageLang,
+                                    ),
+                                    array(
+                                        'type' => 'hidden',
+                                        'name' => 'postUrl',
+                                        'id' => 'postUrl',
+                                        'value' => 'pages/anasayfa-edit'
+                                    )
+                                )
+                        )
+                    );
 
+                    ?>
+                </div>
+            </div>
             <div class="card">
                 <div class="card-body">
                     <?php
@@ -443,13 +494,13 @@ if ($_GET['pageLang']) {
                                     [
                                         'type' => 'file',
                                         'label' => 'Katılmıcı Firmalar',
-                                        'name' => 'katilimci_'.$pageLang,
-                                        'id' => 'katilimci_'.$pageLang,
+                                        'name' => 'katilimci_' . $pageLang,
+                                        'id' => 'katilimci_' . $pageLang,
                                     ],
                                     [
                                         'type' => 'hidden',
                                         'name' => 'upload',
-                                        'value' => 'katilimci_'.$pageLang,
+                                        'value' => 'katilimci_' . $pageLang,
                                     ],
                                     array(
                                         'type' => 'hidden',

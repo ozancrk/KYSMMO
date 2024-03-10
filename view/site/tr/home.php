@@ -18,19 +18,19 @@ $pageMeta = getPageMeta(1);
 
     <div id="tg-homeslider" class="tg-homeslider tg-haslayout owl-carousel">
 
-            <figure class="item tg-bannerimg" data-vide-bg="poster: uploads/<?=getPageMeta(1)['slider_bg']?>"
-                    data-vide-options="position: center">
-                <figcaption>
-                    <div class="container">
+        <figure class="item tg-bannerimg" data-vide-bg="poster: uploads/<?= getPageMeta(1)['slider_bg'] ?>"
+                data-vide-options="position: center">
+            <figcaption>
+                <div class="container">
 
-                        <div class="tg-slidercontent mt-4">
+                    <div class="tg-slidercontent mt-4">
 
-                            <?php echo getPageMeta(1)['slider_' . $SiteLang] ?>
+                        <?php echo getPageMeta(1)['slider_' . $SiteLang] ?>
 
-                        </div>
                     </div>
-                </figcaption>
-            </figure>
+                </div>
+            </figcaption>
+        </figure>
 
     </div>
 </div>
@@ -158,12 +158,84 @@ $pageMeta = getPageMeta(1);
         </section>
     <?php endif; ?>
 
-    <?php if ($pageMeta['status_sponsor_' . $SiteLang]): ?>
-        <section class="tg-sectionspace tg-haslayout">
+    <?php if ($pageMeta['status_destek_' . $SiteLang]):
+
+        $KurulData = $db->from('kurullar')->where('id',$pageMeta['kurul_destek'])->first();
+
+        $cartList = $db->from('kurulMeta')->where('kurul', $pageMeta['kurul_destek'])->all();
+
+
+        ?>
+        <section class="tg-sectionspace tg-haslayout ">
             <div class="container">
                 <div class="row">
                     <div class="col-12">
-                        <h3 class="text-center mb-4"><?=$pageMeta['title_sponsor_' . $SiteLang]?></h3>
+                        <h3 class="text-center mb-4"><?= $KurulData['name_'.$SiteLang] ?></h3>
+                    </div>
+
+
+                    <?php
+
+
+
+
+                    foreach ($cartList as $item):
+
+
+
+                        $data = json_decode($item['data'], true);
+
+                        if ($item['sort'] == 0) {
+                            continue;
+                        }
+
+                        ?>
+                        <div class="col-4 item mx-3">
+
+                                <a target="_blank"
+                                   href="<?= urlConvert($data['web']) ?>">
+                                    <img style="max-width:150px"
+                                         src="<?= $data['logo'] ?>"
+                                         class="img-fluid">
+                                </a>
+                        </div>
+                        <?php $i++; endforeach; ?>
+                    <?php
+
+                    foreach ($cartList as $item):
+                        $data = json_decode($item['data'], true);
+
+                        if ($item['sort'] != 0) {
+                            continue;
+                        }
+
+                        ?>
+                        <div class="col-4 item mx-3">
+
+                            <a target="_blank"
+                               href="<?= urlConvert($data['web']) ?>">
+                                <img style="max-width:150px"
+                                     src="<?= $data['logo'] ?>"
+                                     class="img-fluid">
+                            </a>
+                        </div>
+                        <?php $i++; endforeach; ?>
+
+
+                </div>
+
+            </div>
+
+
+        </section>
+    <?php endif; ?>
+
+    <?php if ($pageMeta['status_sponsor_' . $SiteLang]): ?>
+        <section class="tg-sectionspace tg-haslayout blueBG">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <h3 class="text-center mb-4"><?= $pageMeta['title_sponsor_' . $SiteLang] ?></h3>
                     </div>
                     <div class="col-12">
                         <div class="owl-carousel sponsor-carousel owl-theme">
@@ -188,8 +260,10 @@ $pageMeta = getPageMeta(1);
                                 <div class="col-4 item <?= ($i == 1 ? 'active' : '') ?> mx-3">
                                     <div class="item-desc">
                                         <div class="col-12">
-                                            <a target="_blank" href="<?=urlConvert(getUserMeta($item['user'], 'web'))?>">
-                                                <img style="max-width:150px" src="<?= getUserMeta($item['user'], 'logo') ?>"
+                                            <a target="_blank"
+                                               href="<?= urlConvert(getUserMeta($item['user'], 'web')) ?>">
+                                                <img style="max-width:150px"
+                                                     src="<?= getUserMeta($item['user'], 'logo') ?>"
                                                      class="img-fluid">
                                             </a>
                                         </div>
@@ -214,8 +288,10 @@ $pageMeta = getPageMeta(1);
                                 <div class="col-4 item <?= ($i == 1 ? 'active' : '') ?> mx-3">
                                     <div class="item-desc">
                                         <div class="col-12">
-                                            <a target="_blank" href="<?=urlConvert(getUserMeta($item['user'], 'web'))?>">
-                                                <img style="max-width:150px" src="<?= getUserMeta($item['user'], 'logo') ?>"
+                                            <a target="_blank"
+                                               href="<?= urlConvert(getUserMeta($item['user'], 'web')) ?>">
+                                                <img style="max-width:150px"
+                                                     src="<?= getUserMeta($item['user'], 'logo') ?>"
                                                      class="img-fluid">
                                             </a>
 
@@ -244,13 +320,13 @@ $pageMeta = getPageMeta(1);
             <div class="container">
                 <div class="row">
                     <div class="col-12">
-                        <h3 class="text-center mb-4"><?=$pageMeta['title_sergi_' . $SiteLang]?></h3>
+                        <h3 class="text-center mb-4"><?= $pageMeta['title_sergi_' . $SiteLang] ?></h3>
                     </div>
                     <div class="col-12">
                         <div class="owl-carousel sergi-carousel owl-theme">
 
                             <?php
-                            $i = 0;
+                            $k = 1;
                             $cartList = cartListbyCat(3);
 
                             foreach ($cartList as $item):
@@ -266,18 +342,20 @@ $pageMeta = getPageMeta(1);
                                 }
 
                                 ?>
-                                <div class="col-4 item <?= ($i == 1 ? 'active' : '') ?> mx-3">
+                                <div class="col-4 item <?= ($k == 1 ? 'active' : '') ?> mx-3">
                                     <div class="item-desc">
                                         <div class="col-12">
-                                            <a target="_blank" href="<?=urlConvert(getUserMeta($item['user'], 'web'))?>">
-                                                <img style="max-width:150px" src="<?= getUserMeta($item['user'], 'logo') ?>"
+                                            <a target="_blank"
+                                               href="<?= urlConvert(getUserMeta($item['user'], 'web')) ?>">
+                                                <img style="max-width:150px"
+                                                     src="<?= getUserMeta($item['user'], 'logo') ?>"
                                                      class="img-fluid">
                                             </a>
                                         </div>
                                         <h6 class="text-center mt-1"> <?= $ItemMeta['name_' . $SiteLang] ?></h6>
                                     </div>
                                 </div>
-                                <?php $i++; endforeach; ?>
+                                <?php $k++; endforeach; ?>
                             <?php
 
                             foreach ($cartList as $item):
@@ -295,15 +373,17 @@ $pageMeta = getPageMeta(1);
                                 <div class="col-4 item <?= ($i == 1 ? 'active' : '') ?> mx-3">
                                     <div class="item-desc">
                                         <div class="col-12">
-                                            <a target="_blank" href="<?=urlConvert(getUserMeta($item['user'], 'web'))?>">
-                                                <img style="max-width:150px" src="<?= getUserMeta($item['user'], 'logo') ?>"
+                                            <a target="_blank"
+                                               href="<?= urlConvert(getUserMeta($item['user'], 'web')) ?>">
+                                                <img style="max-width:150px"
+                                                     src="<?= getUserMeta($item['user'], 'logo') ?>"
                                                      class="img-fluid">
                                             </a>
                                         </div>
                                         <h6 class="text-center mt-1"> <?= $ItemMeta['name_' . $SiteLang] ?></h6>
                                     </div>
                                 </div>
-                                <?php $i++; endforeach; ?>
+                                <?php $k++; endforeach; ?>
 
 
                         </div>

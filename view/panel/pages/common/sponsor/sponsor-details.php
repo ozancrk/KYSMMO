@@ -169,6 +169,7 @@ $ItemMeta = getUserMeta($_GET['ID']);
                                         <tr>
                                             <th scope="col">Sponsorluk Paketi</th>
                                             <th scope="col"></th>
+                                            <th scope="col"></th>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -182,6 +183,7 @@ $ItemMeta = getUserMeta($_GET['ID']);
                                                 ->where('deleteStatus', 0)
                                                 ->first();
 
+                                            $data = json_decode($cartCheck['data'],true);
 
                                             ?>
                                             <tr>
@@ -200,6 +202,74 @@ $ItemMeta = getUserMeta($_GET['ID']);
                                                                 onclick="processConfirm('cartUSer','<?= setFormTokenSession() ?>',<?= 'cart' . $item['id'] ?>,'')">
                                                             EKLE
                                                         </button>
+                                                    <?php endif; ?>
+                                                </td>
+                                                <td>
+                                                    <?php if ($cartCheck): ?>
+                                                        <?php
+
+                                                        echo createForm(
+                                                            array(
+                                                                'id' => 'serialize',
+                                                                'buttonText' => 'Güncelle',
+                                                                'btnclass' => 'btn-primary',
+                                                                'elements' =>
+                                                                    array(
+                                                                        array(
+                                                                            'type' => 'text',
+                                                                            'name' => 'price',
+                                                                            'value' => ($data['price']?$data['price']:$item['price'])
+                                                                        ),
+                                                                        array(
+                                                                            'type' => 'hidden',
+                                                                            'name' => 'postUrl',
+                                                                            'value' => 'cart/edit'
+                                                                        ),
+                                                                        array(
+                                                                            'type' => 'hidden',
+                                                                            'name' => 'itemid',
+                                                                            'value' => $cartCheck['id']
+                                                                        )
+                                                                    )
+                                                            )
+                                                        );
+
+
+                                                        ?>
+                                                    <?php endif; ?>
+                                                </td>
+                                                <td>
+                                                    <?php if ($cartCheck): ?>
+                                                        <?php
+
+                                                        echo createForm(
+                                                            array(
+                                                                'id' => 'serialize',
+                                                                'buttonText' => 'Ödemeyi Güncelle',
+                                                                'btnclass' => 'btn-primary',
+                                                                'elements' =>
+                                                                    array(
+                                                                        array(
+                                                                            'type' => 'text',
+                                                                            'name' => 'payment',
+                                                                            'value' => $data['payment']
+                                                                        ),
+                                                                        array(
+                                                                            'type' => 'hidden',
+                                                                            'name' => 'postUrl',
+                                                                            'value' => 'cart/edit'
+                                                                        ),
+                                                                        array(
+                                                                            'type' => 'hidden',
+                                                                            'name' => 'itemid',
+                                                                            'value' => $cartCheck['id']
+                                                                        )
+                                                                    )
+                                                            )
+                                                        );
+
+
+                                                        ?>
                                                     <?php endif; ?>
                                                 </td>
                                             </tr>

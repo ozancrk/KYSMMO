@@ -21,7 +21,7 @@
                         <div class="card-header">
                             <a href="<?=urlCreate('sponsor/sponsor-ekle')?>" class="btn btn-soft-primary">Yeni Ekle</a>
                         </div>
-                        <table id="example"
+                        <table id="buttons-datatables"
                                class="table table-bordered dt-responsive nowrap table-striped align-middle"
                                style="width:100%">
                             <thead>
@@ -61,7 +61,7 @@
 
                                 } else if ($data['status'] == 2) {
 
-                                    $durum1 = '<span class="badge text-bg-success">Ödeme Alındı</span>';
+                                    $durum1 = '<span class="badge text-bg-success">Ödeme Tamamlandı</span>';
 
                                 }
 

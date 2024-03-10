@@ -58,6 +58,11 @@ $menu = array(
 			'dropdown' => false,
 			'type'     => 'title',
 		),
+        array(
+            'name'     => array( 'tr' => 'Kurul ve Listeler', 'en' => 'Delegates' ),
+            'dropdown' => false,
+            'URL'      => 'kurul/main'
+        ),
 		array(
 			'name'     => array( 'tr' => 'Kongre', 'en' => 'Congress' ),
 			'icon'     => '<i class="la la-calendar"></i>',

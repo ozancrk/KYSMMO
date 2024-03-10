@@ -14,6 +14,6 @@ echo "🎬 start supervisord"
 
 supervisord -c $LARAVEL_PATH/.deploy/config/supervisor.conf
 
-cd $LARAVEL_PATH
+mkdir $LARAVEL_PATH/uploads
 
-chmod 0777 /uploads
+chmod 0777 $LARAVEL_PATH/uploads

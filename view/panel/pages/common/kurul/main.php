@@ -5,11 +5,11 @@
         <div class="row">
             <div class="col-12">
                 <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                    <h4 class="mb-sm-0">Bildiriler</h4>
+                    <h4 class="mb-sm-0">Kurullar, Kuruluş ve Diğer Listeler</h4>
 
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
-                            <li class="breadcrumb-item"><a href="javascript: void(0);">Bildiriler</a></li>
+                            <li class="breadcrumb-item"><a href="javascript: void(0);">Diğer Listeler</a></li>
                             <li class="breadcrumb-item active">Listele</li>
                         </ol>
                     </div>
@@ -18,45 +18,25 @@
             </div>
             <div class="col-12">
                 <div class="card">
+                    <div class="card-header">
+                        <a href="<?=urlCreate('kurul/ekle')?>" class="btn btn-soft-primary">Yeni Ekle</a>
+                    </div>
                     <div class="card-body">
 
-                        <table id="buttons-datatables" class="table table-bordered dt-responsive nowrap table-striped align-middle"
+                        id="buttons-datatables" class="table table-bordered dt-responsive nowrap table-striped align-middle"
                                style="width:100%">
                             <thead>
                             <tr>
-                                <th>Bildiri ID</th>
-                                <th>Yazar</th>
-                                <th>Bildiri Adı</th>
-                                <th>Durum</th>
-                                <th>Ekleme Tarihi</th>
-                                <th>Son Güncelleme</th>
-                                <th></th>
+                                <th>Liste</th>
                                 <th></th>
                             </tr>
                             </thead>
                             <tbody>
-                            <?php foreach (listBildiriler($_SESSION['UserID']) as $Paper):
-
-                                if($Paper['status'] == 0){
-
-                                    $durum1 =  '<span class="badge text-bg-danger">Düzenlenemez</span>';
-
-                                }else if($Paper['status'] == 1){
-
-                                    $durum1 =  '<span class="badge text-bg-success">Düzenlenebilir</span>';
-
-                                }
-
+                            <?php foreach ($db->from('kurullar')->all() as $Paper):
 
                                 ?>
                                 <tr>
-                                    <td><?=$Paper['id']?></td>
-                                    <td><?=getUserMeta($Paper['yazar'],'name')?></td>
-                                    <td><?=$Paper['title']?></td>
-                                    <td><?php echo bildiriStatus($Paper['status'],$SiteLang); ?></td>
-                                    <td><?php echo date("d.m.Y H:i:s", strtotime($Paper['ekleme']['date'])); ?> </td>
-                                    <td><?php echo date("d.m.Y H:i:s", strtotime($Paper['sonislem']['date'])); ?> </td>
-                                    <td><?=$durum1?></td>
+                                    <td><?=$Paper['name_'.$SiteLang]?></td>
                                     <td>
                                         <div class="dropdown d-inline-block">
                                             <button class="btn btn-soft-secondary btn-sm dropdown" type="button"
@@ -64,8 +44,8 @@
                                                 <i class="ri-more-fill align-middle"></i>
                                             </button>
                                             <ul class="dropdown-menu dropdown-menu-end">
-                                                <li><a href="<?=urlCreate('bildiri/details?paperID='.$Paper['id'])?>" class="dropdown-item edit-item-btn"><i
-                                                                class="ri-pencil-fill align-bottom me-2 text-muted"></i>
+                                                <li><a href="<?=urlCreate('kurul/details?id='.$Paper['id'])?>" class="dropdown-item edit-item-btn"><i
+                                                            class="ri-pencil-fill align-bottom me-2 text-muted"></i>
                                                         Detaylar</a></li>
                                             </ul>
                                         </div>

@@ -160,7 +160,7 @@ $ItemMeta = getProduct($_GET['ID']);
                                 <div class="col-12">
                                     <div class="card">
                                         <div class="card-body">
-                                            <table id="example"
+                                            <table id="buttons-datatables"
                                                    class="table table-bordered dt-responsive nowrap table-striped align-middle"
                                                    style="width:100%">
                                                 <thead>
@@ -189,7 +189,7 @@ $ItemMeta = getProduct($_GET['ID']);
 
                                                     } else if ($data['status'] == 2) {
 
-                                                        $durum1 = '<span class="badge text-bg-success">Ödeme Alındı</span>';
+                                                        $durum1 = '<span class="badge text-bg-success">Ödeme Tamamlandı</span>';
 
                                                     }
 

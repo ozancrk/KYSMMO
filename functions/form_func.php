@@ -196,7 +196,7 @@ function createForm($array = array())
     }
 
     $out .= '<div class="text-end">
-                                                <button type="submit" class="btn btn-primary">' . $array['buttonText'] . '  ' . $buttonIcon . '</button>
+                                                <button type="submit" class="btn '.($array['btnclass']?$array['btnclass']:'btn-primary').'">' . $array['buttonText'] . '  ' . $buttonIcon . '</button>
                                                 
                                             </div>';
 

@@ -3,12 +3,13 @@
 // TARİH TİME ZONE
 date_default_timezone_set('Europe/Istanbul');
 
-define('DB_SERVER', 'srv-captain--db-db');
-define('DB_USERNAME', 'root');
+define('DB_SERVER', 'localhost');
+define('DB_USERNAME', 'admin_kys');
 define('DB_PASSWORD', 'zxdsl831C..');
-define('DB_DATABASE', 'komur2024');
+define('DB_DATABASE', 'admin_kys');
 
 require_once  server_root_dir().'/classes/BasicDB.php';
+
 
 $dbhost = DB_SERVER;
 $dbuser = DB_USERNAME;

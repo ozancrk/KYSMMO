@@ -32,7 +32,13 @@
                                     array(
                                         array(
                                             'type' => 'date',
-                                            'label' => 'Bildiri Özet Teslim Tarihi',
+                                            'label' => 'Bildiri Özet Teslim Başlangıç Tarihi',
+                                            'name' => 'ozetTeslimDateStart',
+                                            'value' => getOption('ozetTeslimDateStart')
+                                        ),
+                                        array(
+                                            'type' => 'date',
+                                            'label' => 'Bildiri Özet Teslim Bitiş Tarihi',
                                             'name' => 'ozetTeslimDate',
                                             'value' => getOption('ozetTeslimDate')
                                         ),
@@ -46,7 +52,14 @@
 
                                         array(
                                             'type' => 'date',
-                                            'label' => 'Tam Metin Bildirilerin Teslim Tarihi',
+                                            'label' => 'Tam Metin Bildirilerin Teslim Başlangıç Tarihi',
+                                            'name' => 'tamMetinDateStart',
+                                            'value' => getOption('tamMetinDateStart')
+                                        ),
+
+                                        array(
+                                            'type' => 'date',
+                                            'label' => 'Tam Metin Bildirilerin Teslim Bitiş Tarihi',
                                             'name' => 'tamMetinDate',
                                             'value' => getOption('tamMetinDate')
                                         ),
