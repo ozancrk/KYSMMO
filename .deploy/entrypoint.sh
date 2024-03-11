@@ -1,6 +1,5 @@
 #!/bin/sh
 
-
 echo "🎬 entrypoint.sh: [$(whoami)] [PHP $(php -r 'echo phpversion();')]"
 
 composer dump-autoload --no-interaction --no-dev --optimize
@@ -13,7 +12,3 @@ php artisan migrate --no-interaction --force
 echo "🎬 start supervisord"
 
 supervisord -c $LARAVEL_PATH/.deploy/config/supervisor.conf
-
-mkdir $LARAVEL_PATH/uploads
-
-chmod 0777 $LARAVEL_PATH/uploads

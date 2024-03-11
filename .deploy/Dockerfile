@@ -91,4 +91,8 @@ ARG PUSHER_APP_CLUSTER=${PUSHER_APP_CLUSTER}
 EXPOSE 80
 COPY ./.deploy/entrypoint.sh /
 
+RUN mkdir "uploads"
+
+RUN chmod 777 /var/www/html/uploads
+
 ENTRYPOINT ["sh", "/entrypoint.sh"]
